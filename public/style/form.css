@@ -1,0 +1,100 @@
+main{
+ display: flex;
+ background-color: black;
+ margin-top: 5rem;
+}
+
+main form{
+ margin: 5rem auto;
+ width: 70%;
+ background-color: black;
+ /* padding: 5rem; */
+ text-align: left;
+ border-left: 8px solid rgb(45, 17, 17);
+ 
+}
+
+main form div{
+ margin: 2rem;
+}
+
+main form label{
+ color: white
+}
+
+main form input{
+   margin: auto 2rem;
+   }
+ svg{
+color: white;
+position: relative;
+right: 1.5rem;
+background-color: black;
+border: none;
+border-radius: 100px;
+cursor: pointer;
+   }
+
+#img{
+ /* background-color: aqua; */
+ text-align: center;
+   }
+#img img{
+ width: 7rem;
+ height: 7rem;
+ /* border-radius: 100px; */
+ overflow: hidden;
+ object-fit: cover;
+ border: dashed;
+ border: 2px solid rgb(27, 8, 8);
+}
+
+.input{
+ display: flex;
+ justify-content: space-between;
+ width: 31rem;
+}
+.desc{
+ display: flex;
+ gap: 4rem;
+ width: 20rem;
+}
+textarea{
+ resize: vertical;
+}
+.input input{
+ width: 20rem;
+ /* width: 100%; */
+ /* height: 1.5rem; */
+ padding: 0.2rem;
+ border: 2px solid rgb(27, 8, 8);
+}
+/* #quare svg{
+ width: 100rem;
+ color: white;
+} */
+div select{
+ width: 5rem;
+ height: 1.5rem;
+}
+.select{
+ display: flex;
+ justify-content: flex-start;
+ gap: 1.6rem;
+}
+button{
+ background-color: brown;
+ border: none;
+ /* border-radius: 10px; */
+ padding: 0.4rem 1rem;
+ cursor: pointer;
+ transition: 0.4s ease-in;
+}
+button:hover{
+   background-color: rgb(158, 5, 5);
+   color: rgb(224, 208, 208);
+   border-radius: 10px;
+}
+#btn{
+text-align: center;
+}

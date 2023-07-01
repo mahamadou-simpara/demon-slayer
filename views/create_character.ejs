@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style/form.css">
+    <link rel="stylesheet" href="./style/style.css">
+    <script src="./script/script.js" defer></script>
+    <title>Create-Character</title>
+</head>
+<body>
+    <header>
+        <h2>
+            <a href="/">Demon Slayer</a> 
+        </h2>
+        <ul>
+            <a href="heroes"><li>Heroes</li></a> 
+            <a href="demons"><li>Demons</li></a>
+            <a href="create"><li>Create Character</li></a>
+        </ul>
+        <form action="">
+        <input type="text" placeholder="Search...">
+        <!-- <button></button> -->
+        </form>
+        <div>
+            <img src="./imgs/Low-Res-Kamado-Tanjiro-from-Demon-Slayer.webp" alt="Tangiro's Picture">
+            <h3>Tangiro</h3>
+        </div>
+    </header>
+    <main>
+    <div>
+        <img src="/imgs/Low-Res-Kamado-Tanjiro-from-Demon-Slayer.webp" alt="" srcset="">
+    </div>
+        <form action="/create" method="POST">
+        <div id="img">
+            <!-- <label for="name">add</label> -->
+            <img src="/imgs/IMG_0923.JPG" alt="" >
+            <img src="" alt="" id='hidden' hidden>
+            <input type="file" id="name" >
+                <!-- <svg  xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path fill="currentColor" d="M24 17.995h-6v5.979h-4v-5.979H8v-3.984h6V8.027h4v5.984h6zM28 .052H4a4.008 4.008 0 0 0-4 3.99v23.922a4.007 4.007 0 0 0 4 3.984h24a4.007 4.007 0 0 0 4-3.984V4.042a4.01 4.01 0 0 0-4-3.99z" hidden/></svg> -->
+        </div>
+        <div class="input">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name"> 
+        </div>
+        <div class="desc">
+            <label for="desc">Desciption</label>
+            <textarea id="desc" name="description" rows="4" column="10"></textarea>
+        </div>
+        <div class="input">
+            <label for="author">Author name</label>
+            <input type="text" id="author" name="author">
+        </div>
+        <div class="select">
+            <label for="">Character Nature</label>
+            <select name="nature" id="">
+                <% for(const nature of natures){ %>
+                    <option value="<%= nature.type %>"><%= nature.type %></option>
+                    <% } %>
+            </select>
+        </div>
+        <div id="btn">
+            <button>Submit</button>
+        </div>
+        </form>
+    </main>
+</body>
+</html>

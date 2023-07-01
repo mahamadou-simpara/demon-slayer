@@ -1,0 +1,64 @@
+main{
+ color: white;
+}
+main ul{
+ padding: 0;
+ height: 20rem; 
+ box-sizing: content-box;
+}
+
+main ul li{
+ display: flex;
+ background-color: rgb(29, 29, 29);
+ justify-content: space-between;
+ padding: 0;
+ /* height: 20rem; */
+}
+header h2 a{
+ text-decoration: none;
+ 
+}
+
+                        
+.container{
+ text-align: center;
+ width: 100%;
+ height: 20rem;
+ display: flex;
+ flex-direction: column;
+ justify-content: space-evenly;
+ overflow: hidden;
+}
+.container div{
+ padding: 10px;
+}
+#crud{
+ display: flex;
+ gap: 1rem;
+ justify-content: center
+}
+#crud button{
+ padding: 0.5rem 1.2rem;
+ background-color: brown;
+ border: none;
+ border-radius: 5px;
+ font-weight: bold;
+ color: inherit;
+ cursor: pointer;
+}
+
+#crud button:hover{
+    background-color: rgb(190, 8, 8);
+}
+main ul li img{
+ width: 100%;
+ height: 100%;
+ object-fit: cover;
+}
+div address{
+    display: inline;
+}
+
+
+
+/* main ul */

@@ -1,0 +1,14 @@
+main div{
+ margin-top: 2rem;
+ width: 100%;
+ background-color: black;
+ text-align: center;
+ height: 40rem;
+ color: white;
+}
+
+main div img{
+    margin-top: 1rem;
+ width: 8rem;
+ height: 8rem;
+}

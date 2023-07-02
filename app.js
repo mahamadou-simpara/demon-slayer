@@ -31,6 +31,7 @@ app.get('/create',async  (req, res) => {
 
 app.post('/create', (req, res) =>{
   const data = [
+    req.
     req.body.name,
     req.body.author,
     req.body.description,

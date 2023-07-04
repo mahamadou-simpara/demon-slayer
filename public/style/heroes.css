@@ -13,6 +13,8 @@ main ul li{
  justify-content: space-between;
  padding: 0;
  /* height: 20rem; */
+ margin-top: 5rem;
+ border: 2px white solid;
 }
 header h2 a{
  text-decoration: none;
@@ -59,6 +61,9 @@ div address{
     display: inline;
 }
 
-
+a{
+ text-decoration: none;
+ color: white;
+}
 
 /* main ul */

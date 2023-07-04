@@ -1,17 +1,26 @@
+body{
+margin: 0;
+box-sizing: border-box;
+padding-bottom: 2rem;
+height: 100%;
+margin-bottom: 2rem;
+}
+
 main{
  display: flex;
  background-color: black;
  margin-top: 5rem;
+ margin-bottom: 15rem; 
 }
 
 main form{
  margin: 5rem auto;
  width: 70%;
- background-color: black;
+ /* background-color: black; */
  /* padding: 5rem; */
  text-align: left;
  border-left: 8px solid rgb(45, 17, 17);
- 
+ /* margin-bottom: 15rem; */
 }
 
 main form div{

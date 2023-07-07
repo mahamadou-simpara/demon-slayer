@@ -4,6 +4,12 @@ html{
  padding: 1.5rem;
  /* width: 100%; */
 }
+/* body{
+ margin: 0;
+ width: 100vw;
+ height: 100vh;
+ overflow-x: hidden;
+} */
 header{
  background-color: black;
  color: white;

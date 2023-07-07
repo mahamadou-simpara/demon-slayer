@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style/heroes.css">
-    <link rel="stylesheet" href="./style/style.css">
+    <link rel="stylesheet" href="../style/heroes.css">
+    <link rel="stylesheet" href="../style/style.css">
     <title>Heroes</title>
 </head>
 <body>
@@ -43,7 +43,7 @@
                                 <input type="text" name="delete" value="<%= demon._id %>" hidden>
                                 <button>Delete</button>
                             </form>
-                                <button>update</button>
+                                <a href="update/<%= demon._id %>"><button>update</button></a> 
                                 <a href="view/<%= demon._id %>"><button>view</button></a>
                             
                         </div>

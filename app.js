@@ -88,7 +88,24 @@ app.post('/deletehero',async (req, res) =>{
  
    await db.receiveBd().collection('characters').deleteOne({_id: deleteId})
    res.redirect('/heroes');
-})
+});
+
+app.get('/update/:id',async (req, res) =>{
+  const id = new ObjectId(req.params.id);
+  const data = await db.receiveBd().collection('characters').findOne({_id: id});
+
+ res.render('update', {data: data});
+});
+
+app.post('/update/:id', upload.single('image'),async (req, res) =>{
+  const updateID = new ObjectId(req.params.id);
+
+  console.log(req.file.path);
+ 
+  const result = await db.receiveBd().collection('characters').updateOne({_id: updateID}, {$set: { img: req.file.path, name: req.body.name, author: req.body.author, desc: req.body.description }})
+  console.log(result);
+   res.redirect('/');
+});
 
 db.connect().then(function(){
     

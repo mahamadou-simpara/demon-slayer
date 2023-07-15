@@ -1,15 +1,30 @@
+*{
+ box-sizing: border-box;
+ font-family: 'Roboto', sans-serif;
+
+}
+
+body{
+ width: 100vw;
+ /* height: 100vh; */
+ margin: 0;
+ overflow-x: hidden;
+ padding: 20px;
+}
 main{
- width: 100%;
- height: 100vh;
+ width: 50%;
+ height: 30rem;
+ /* height: 100vh; */
  /* margin-bottom: 5rem; */
- padding-bottom: 2rem;
+ padding-bottom: 0.4rem;
+ margin: 2rem auto;
 }
 main div{
  margin-top: 2rem;
  width: 100%;
  background-color: black;
  text-align: center;
- height: 35rem;
+ height: 100%;
  color: white;
 }
 
@@ -21,6 +36,87 @@ main div img{
 }
 #name{
  font-size: 1.4rem;
- font-family: sans-serif;
+ font-family:  inherit;
  margin: 10px auto;
+}
+
+#Comments{
+ background-color: black;
+ width: 50%;
+ margin: 0.3rem auto;
+ color: white;
+ text-align: center;
+ padding: 0.1rem;
+}
+
+#Comments button{
+ background-color: brown;
+ padding: 0.2rem 1rem;
+ border: none;
+ color: white;
+ font-family: 'Roboto', sans-serif;
+ margin: 1rem;
+}
+#Comments button:hover{
+    background-color: rgb(48, 0, 0);
+}
+#Comments ul{
+ list-style: none;
+ padding: 0;
+ display: flex;
+ flex-wrap: wrap;
+}
+
+#Comments ul li{
+ border: 2px solid white;
+ width: 35%;
+ margin: 10px auto;
+
+}
+#form-container{
+ width: 50%;
+ background-color: black;
+ margin: 2rem auto;
+ height: 15rem;
+}
+
+#form-container form{
+ height: 100%;
+ padding: 10px;
+}
+
+.form-title{
+ display: flex;
+ flex-direction: column;
+ color: white;
+ align-items: center;
+ width: 30%;
+ margin: 10px auto;
+}
+input, textarea{
+ width: 100%;
+}
+
+.form-comment{
+    display: flex;
+    flex-direction: column;
+    color: white;
+    align-items: center;
+    width: 30%;
+    margin: 10px auto;
+    box-sizing: border-box;
+}
+.form-button{
+ text-align: center;
+ height: 1rem;
+}
+.form-button button{
+ margin: 10px auto;
+ background-color: brown;
+ color: white;
+ padding: 0.2rem 1rem;
+ border: none;
+}
+.form-button button:hover{
+ background-color: rgb(32, 0, 0);
 }

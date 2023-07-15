@@ -3,12 +3,15 @@ const express = require('express');
 const db = require('./data/database');
 const multer = require('multer');
 const { ObjectId } = require('mongodb');
+const { isNull } = require('util');
 
 
 const app = express();
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.static('public'));
+app.use(express.json);
+
 
 const objectId = new ObjectId();
 const storagehandler = multer.diskStorage({
@@ -37,7 +40,7 @@ app.get('/demons',async (req, res) => {
 
 app.get('/heroes',async (req, res) => {
   const heroes = await db.receiveBd().collection('characters').find({nature: 'Hero'}).toArray();
-  console.log(heroes);
+  // console.log(heroes);
  res.render('heroes', {heroes: heroes});
 });
 
@@ -62,16 +65,17 @@ app.post('/create', upload.single('image'),async (req, res) =>{
     img: req.file.path, name: req.body.name, author: req.body.author, desc: req.body.description, nature: req.body.nature, date: new Date()
   });
 
-  console.log(result);
+  // console.log(result);
     res.redirect('/');
 });
 
 app.get('/view/:id',async (req, res) =>{
   const id = new ObjectId(req.params.id);
   const data = await db.receiveBd().collection('characters').findOne({_id: id});
-  console.log(data);
+ 
+  // console.log(data);
   res.render('view_character', {
-    data: data
+    data: data, comments: null
   })
 });
 
@@ -100,12 +104,34 @@ app.get('/update/:id',async (req, res) =>{
 app.post('/update/:id', upload.single('image'),async (req, res) =>{
   const updateID = new ObjectId(req.params.id);
 
-  console.log(req.file.path);
+  // console.log(req.file.path);
  
   const result = await db.receiveBd().collection('characters').updateOne({_id: updateID}, {$set: { img: req.file.path, name: req.body.name, author: req.body.author, desc: req.body.description }})
-  console.log(result);
+  // console.log(result);
    res.redirect('/');
 });
+
+app.get('/view/:id/comments',async (req, res) => {
+  const id = new ObjectId(req.params.id);
+  console.log(id);
+  const comments = await db.receiveBd().collection('comments').find().toArray();
+  const data = await db.receiveBd().collection('characters').findOne({_id: id});
+  // console.log(result);
+ res.join({data: data, comments: comments});
+})
+
+app.post('/view/:id/comments',async (req, res) => {
+  // const id = new ObjectId(req.params.id);
+  const id = req.params.id;
+
+  
+  await db.receiveBd().collection('comments').insertOne({
+    title: req.body.name, comment: req.body.comment, id: req.body.id
+  });
+  // console.log(result);
+ res.redirect(`/view/${id}`);
+})
+
 
 db.connect().then(function(){
     

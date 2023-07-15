@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../style/style.css">
-    <link rel="stylesheet" href="../style/view.css">
-
+    <link rel="preconnect" href="https://fonts.googleapis.com.css">
+    <link rel="stylesheet" href="/style/style.css">
+    <link rel="stylesheet" href="/style/view.css">
+    <script src="/script/load-comment.js" defer></script>
     <title>Detail</title>
 </head>
 <body>
@@ -24,18 +25,60 @@
         <!-- <button></button> -->
         </form>
         <div>
-            <img src="../imgs/Low-Res-Kamado-Tanjiro-from-Demon-Slayer.webp" alt="Tangiro's Picture">
+            <img src="/imgs/Low-Res-Kamado-Tanjiro-from-Demon-Slayer.webp" alt="Tangiro's Picture">
             <h3>Tangiro</h3>
         </div>
     </header>
     <main>
         <div>
-            <img src="../<%= data.img %>" alt="Character's picture">
+            <img src="/<%= data.img %>" alt="Character's picture">
             <address> <span><%= data.author %></span>| <time> <%= data.date %></time></address>
             <p id="name"><%= data.name %></p>
             <p><%= data.desc %></p>
         </div>
     </main>
+    
+   <div id="Comments">
+    <h1><h1>Comments</h1></h1>
+    <!-- <form action="/view/<%= data._id %>/comments" method="GET"> -->
+        <button id="load-comment" data-id="<%= data._id %>">Load Comments</button>
+    <!-- </form> -->
+
+        
+    <ul>
+
+        <% if(!comments || comments.length == 0  ){ %>
+         <li><p>Add comment, Please !</p></li> 
+       <% }else{ %>
+        <% for (const comment of comments) { %>
+            <li>
+                <h3><%= comment.name %></h3>
+                <p><%= comment.comment %></p>
+            </li>
+       <% }%>
+       <% } %>
+
+        </ul>
+   </div>
+   <div id="form-container">
+    <form action="/view/<%= data._id %>/comments" method="POST">
+        <div class="form-title">
+            <label for="title">Name</label>
+            <input type="text" hidden name="id" value="<%= data._id %>">
+            <input type="text" id="title" maxlength="20">
+        </div>
+
+        <div class="form-comment">
+            <label for="comment">Comment</label>
+            <textarea name="comment" id="comment" cols="30" rows="5"></textarea>
+        </div>
+        
+        <div class="form-button">
+            <button>Add</button>
+        </div>
+    </form>
+   </div>
+   
     
 </body>
 </html>

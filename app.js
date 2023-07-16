@@ -3,14 +3,15 @@ const express = require('express');
 const db = require('./data/database');
 const multer = require('multer');
 const { ObjectId } = require('mongodb');
-const { isNull } = require('util');
+ 
 
 
 const app = express();
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.static('public'));
-app.use(express.json);
+
+app.use(express.json());
 
 
 const objectId = new ObjectId();
@@ -72,7 +73,7 @@ app.post('/create', upload.single('image'),async (req, res) =>{
 app.get('/view/:id',async (req, res) =>{
   const id = new ObjectId(req.params.id);
   const data = await db.receiveBd().collection('characters').findOne({_id: id});
- 
+  // const comments = await db.receiveBd().collection('comments').find().toArray();
   // console.log(data);
   res.render('view_character', {
     data: data, comments: null
@@ -113,23 +114,27 @@ app.post('/update/:id', upload.single('image'),async (req, res) =>{
 
 app.get('/view/:id/comments',async (req, res) => {
   const id = new ObjectId(req.params.id);
+  const commentId = req.params.id
   console.log(id);
-  const comments = await db.receiveBd().collection('comments').find().toArray();
-  const data = await db.receiveBd().collection('characters').findOne({_id: id});
+  const comments = await db.receiveBd().collection('comments').find({id: commentId}).toArray();
+  // const data = await db.receiveBd().collection('characters').findOne({_id: id});
   // console.log(result);
- res.join({data: data, comments: comments});
-})
+  res.json(comments);
+});
+
+
 
 app.post('/view/:id/comments',async (req, res) => {
   // const id = new ObjectId(req.params.id);
   const id = req.params.id;
+  console.log(req.body);
 
-  
-  await db.receiveBd().collection('comments').insertOne({
-    title: req.body.name, comment: req.body.comment, id: req.body.id
+
+await db.receiveBd().collection('comments').insertOne({
+  name: req.body.name, comment: req.body.comment, id: req.params.id
   });
   // console.log(result);
- res.redirect(`/view/${id}`);
+res.redirect(`/view/${id}`);
 })
 
 

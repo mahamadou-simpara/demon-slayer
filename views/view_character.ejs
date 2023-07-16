@@ -39,38 +39,25 @@
     </main>
     
    <div id="Comments">
-    <h1><h1>Comments</h1></h1>
+   <h1>Comments</h1>
+   <h3></h3>
     <!-- <form action="/view/<%= data._id %>/comments" method="GET"> -->
+        <!-- </form> -->
+    <div id="commentsUlElement">
         <button id="load-comment" data-id="<%= data._id %>">Load Comments</button>
-    <!-- </form> -->
-
-        
-    <ul>
-
-        <% if(!comments || comments.length == 0  ){ %>
-         <li><p>Add comment, Please !</p></li> 
-       <% }else{ %>
-        <% for (const comment of comments) { %>
-            <li>
-                <h3><%= comment.name %></h3>
-                <p><%= comment.comment %></p>
-            </li>
-       <% }%>
-       <% } %>
-
-        </ul>
+    </div> 
    </div>
    <div id="form-container">
-    <form action="/view/<%= data._id %>/comments" method="POST">
+    <form action="/view/<%= data._id %>/comments" id="form" method="POST">
         <div class="form-title">
             <label for="title">Name</label>
-            <input type="text" hidden name="id" value="<%= data._id %>">
-            <input type="text" id="title" maxlength="20">
+            <input type="text" hidden name="id" id="idComment" value="<%= data._id %>">
+            <input type="text" id="nameComment" maxlength="20" required>
         </div>
 
         <div class="form-comment">
             <label for="comment">Comment</label>
-            <textarea name="comment" id="comment" cols="30" rows="5"></textarea>
+            <textarea name="comment" id="comment" cols="30" rows="5" maxlength="70" required ></textarea>
         </div>
         
         <div class="form-button">

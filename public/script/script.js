@@ -1,7 +1,7 @@
 // const svgElement = document.querySelector('#img svg');
 const imgIconElement = document.querySelector('#img img');
 const previewImage = document.querySelector('#hidden');
-const filePicker = document.querySelector('#img input');
+const filePicker = document.querySelector('#input-file');
 
  
 

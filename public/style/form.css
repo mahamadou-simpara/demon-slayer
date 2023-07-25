@@ -65,7 +65,7 @@ cursor: pointer;
 }
 .desc{
  display: flex;
- gap: 4rem;
+ gap: 4.65rem;
  width: 20rem;
 }
 textarea{
@@ -89,7 +89,7 @@ div select{
 .select{
  display: flex;
  justify-content: flex-start;
- gap: 1.6rem;
+ gap: 2.1rem;
 }
 button{
  background-color: brown;

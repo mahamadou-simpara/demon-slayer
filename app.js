@@ -3,6 +3,8 @@ const express = require('express');
 const db = require('./data/database');
 const multer = require('multer');
 const { ObjectId } = require('mongodb');
+const { log } = require('util');
+const bcrypt = require('bcrypt')
  
 
 
@@ -136,6 +138,78 @@ await db.receiveBd().collection('comments').insertOne({
   // console.log(result);
 res.redirect(`/view/${id}`);
 })
+
+
+
+///// Sign-in functionality 
+
+
+app.get('/sign-up', function(req, res){
+ 
+   res.render('sign-up');
+});
+app.get('/sign-in', function(req, res){
+ 
+  res.render('sign-in');
+});
+
+
+app.post('/sign-up',upload.single('image'), async function(req, res){
+
+  
+  const userData = req.body;
+  const userPicture = req.file;
+  const enteredEmail = userData.email;
+  const enteredconfirmEmail = userData['confirm-email'];
+  const enteredpassword = userData.password;
+
+  if(!userPicture ||
+     !enteredEmail ||
+     !enteredconfirmEmail ||
+     enteredpassword.trim().length < 5 ||
+     enteredEmail !== enteredconfirmEmail
+    ){
+      console.log('Incorrect Input !');
+      return res.redirect('/sign-up')
+    }
+
+    const passwordHashed = await bcrypt.hash(enteredpassword, 12);
+
+  const user = {
+    email: enteredEmail,
+    confirmEmail: enteredconfirmEmail,
+    enteredpassword: passwordHashed,
+    userImg: userPicture.path,
+    date: new Date()
+  }
+
+  console.log(user);
+
+  const result = await db.receiveBd().collection('users').insertOne(user);
+
+ 
+  res.redirect('/sign-in');
+})
+app.post('/sign-in',upload.single('image'),async function(req, res){
+
+//   const userData = req.body;
+//   const userPicture = req.file;
+//   const enteredEmail = userData.email;
+//   const enteredEmail = userData.email;
+  
+
+//   const user = {
+//     email: enteredEmail,
+//   }
+
+// const result = await db.receiveBd().collection('characters').insertOne({
+//   img: req.file.path, name: req.body.name, author: req.body.author, desc: req.body.description, nature: req.body.nature, date: new Date()
+// });
+
+  console.log(userData);
+ res.redirect('/');
+})
+
 
 
 db.connect().then(function(){

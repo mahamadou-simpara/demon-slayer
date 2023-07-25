@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style/style.css">
+    <link rel="stylesheet" href="./style/sign-in.css">
+    <script src="./script/script.js" defer></script>
+    <title>Create-Character</title>
+</head>
+<body>
+    <%- include('includes/header.ejs') %>
+    <main>
+    
+    <div>
+        <img src="/imgs/p16749713_b_v9_ak.jpg" id="side-image" alt="" srcset="">
+    </div>
+        <form action="/sign-up" enctype="multipart/form-data" method="POST">
+            <h1>Sign-up</h1>
+        <div id="img">
+            <!-- <label for="name">add</label> -->
+            <img src="/imgs/IMG_0923.JPG" alt="" >
+            <img src="" alt="" id='hidden' hidden>
+            <input type="file" id="input-file" class="select-img-element" name="image" required>
+                <!-- <svg  xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path fill="currentColor" d="M24 17.995h-6v5.979h-4v-5.979H8v-3.984h6V8.027h4v5.984h6zM28 .052H4a4.008 4.008 0 0 0-4 3.99v23.922a4.007 4.007 0 0 0 4 3.984h24a4.007 4.007 0 0 0 4-3.984V4.042a4.01 4.01 0 0 0-4-3.99z" hidden/></svg> -->
+        </div>
+        <div class="input">
+            <label for="name">Email</label>
+            <input type="email" id="name" name="email" maxlength="30" required> 
+        </div>
+        <div class="input">
+            <label for="name">Confirm-Email</label>
+            <input type="email" id="name" name="confirm-email" maxlength="30" required> 
+        </div>
+        <div class="input">
+            <label for="name">Password</label>
+            <input type="password" id="name" name="password" maxlength="30" required> 
+        </div>
+        <div id="btn">
+            <button>Send</button>
+        </div>
+        </form>
+    </main>
+</body>
+</html>

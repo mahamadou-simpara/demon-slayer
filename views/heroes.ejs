@@ -23,11 +23,13 @@
                         </div>
 
                         <div id="crud">
+                            <% if (locals.isAuth){ %>
                             <form action="/deletehero" method="POST">
                                 <input type="text" name="delete" value="<%= hero._id %>" hidden>
                                 <button>Delete</button>
                             </form>
                             <a href="update/<%= hero._id %>"><button>update</button></a> 
+                            <% } %>
                             <a href="view/<%= hero._id %>"><button>view</button></a>
                         </div>
                         

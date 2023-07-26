@@ -18,6 +18,9 @@
     </div>
         <form action="/sign-up" enctype="multipart/form-data" method="POST">
             <h1>Sign-up</h1>
+            <% if(userData.message !== null){ %>
+                <h3 id="incoreect-input"><%= userData.message %></h3>
+            <% } %>
         <div id="img">
             <!-- <label for="name">add</label> -->
             <img src="/imgs/IMG_0923.JPG" alt="" >
@@ -27,15 +30,15 @@
         </div>
         <div class="input">
             <label for="name">Email</label>
-            <input type="email" id="name" name="email" maxlength="30" required> 
+            <input type="email" id="name" name="email" maxlength="30" value="<%= userData.email %>" required> 
         </div>
         <div class="input">
             <label for="name">Confirm-Email</label>
-            <input type="email" id="name" name="confirm-email" maxlength="30" required> 
+            <input type="email" id="name" name="confirm-email" maxlength="30" value="<%= userData.confirmEmail %>" required> 
         </div>
         <div class="input">
             <label for="name">Password</label>
-            <input type="password" id="name" name="password" maxlength="30" required> 
+            <input type="password" id="name" name="password" maxlength="30" value="<%= userData.password %>" required> 
         </div>
         <div id="btn">
             <button>Send</button>

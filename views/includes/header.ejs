@@ -15,8 +15,16 @@
         <img src="./imgs/Low-Res-Kamado-Tanjiro-from-Demon-Slayer.webp" alt="Tangiro's Picture">
         <h3>Tangiro</h3>
     </div> -->
+    <% if (!locals.isAuth){ %>
   <ul>
     <a href="sign-in"> <li id="Sign-in">Sign in</li> </a>
     <a href="sign-up"> <li id="sign-up">Sign up</li></a>
   </ul>
+  <% } %>
+
+ <% if (locals.isAuth){ %>
+  <form action="/logout" method="POST">
+    <button id="header-btn">Logout</button>
+  </form>
+  <% } %>
 </header>

@@ -197,3 +197,20 @@ footer img{
  width: 3rem;
  object-fit: cover;
 }
+
+#header-btn{
+   background-color: brown;
+   border: none;
+   /* border-radius: 10px; */
+   padding: 0.4rem 1rem;
+   cursor: pointer;
+   margin-left: 6rem;
+   transition: 0.4s ease-in;
+}
+
+#header-btn:hover{
+   background-color: rgb(158, 5, 5);
+   color: rgb(224, 208, 208);
+   border-radius: 10px;
+
+}

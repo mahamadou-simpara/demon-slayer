@@ -16,7 +16,10 @@
     <div>
         <img src="/imgs/p16749713_b_v9_ak.jpg" id="side-image" alt="" srcset="">
     </div>
-        <form action="/sign-in" enctype="multipart/form-data" method="POST">
+    <form action="/sign-in" enctype="multipart/form-data"  method="POST">
+            <% if(userData.message !== null){ %>
+                <h3 id="incoreect-input"><%= userData.message %></h3>
+            <% } %>
             <h1>Sign-in</h1>
         <!-- <div id="img">
             <!-- <label for="name">add</label> -->
@@ -27,11 +30,11 @@
         <!-- </div> -->
         <div class="input">
             <label for="name">Email</label>
-            <input type="email" id="name" name="email" maxlength="30" required> 
+            <input type="email" id="name" name="email" maxlength="30" value="<%= userData.email %>" required> 
         </div>
         <div class="input">
             <label for="name">Password</label>
-            <input type="password" id="name" name="password" maxlength="30" required> 
+            <input type="password" id="name" name="password" maxlength="30" value="<%= userData.password %>" required> 
         </div>
         <div id="btn">
             <button>Send</button>

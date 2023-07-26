@@ -29,6 +29,7 @@ main form{
  width: 100%;
  padding: 10px;
  text-align: center;
+ margin: auto;
 }
 h1{
  color: white;

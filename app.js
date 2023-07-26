@@ -4,7 +4,10 @@ const db = require('./data/database');
 const multer = require('multer');
 const { ObjectId } = require('mongodb');
 const { log } = require('util');
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt');
+const session = require('express-session');
+const mongoDBStore = require('connect-mongodb-session')
+
  
 
 
@@ -15,8 +18,28 @@ app.use(express.static('public'));
 
 app.use(express.json());
 
+//
+const Sessionstore = mongoDBStore(session);
+
+const store = new Sessionstore({
+ uri: 'mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+1.9.1',
+ databaseName: 'demon_slayer_CRUD',
+ collection: 'sessions',
+})
+
+//
+
+app.use(session({
+  secret: 'Secret database',
+  saveUninitialized: false,
+  resave: false,
+  store: store
+}))
+
+
 
 const objectId = new ObjectId();
+//
 const storagehandler = multer.diskStorage({
   destination: function(res, file, cb){
     cb(null, 'uploads/');
@@ -170,15 +193,23 @@ app.post('/sign-up',upload.single('image'), async function(req, res){
      enteredEmail !== enteredconfirmEmail
     ){
       console.log('Incorrect Input !');
-      return res.redirect('/sign-up')
+      return res.redirect('/sign-up');
     }
+    const database = await db.receiveBd().collection('users').findOne({email: enteredEmail});
+   
+   
+    if(database){
+      console.log("Existing Email");
+      return res.redirect('/sign-up');
+    }
+
 
     const passwordHashed = await bcrypt.hash(enteredpassword, 12);
 
   const user = {
     email: enteredEmail,
     confirmEmail: enteredconfirmEmail,
-    enteredpassword: passwordHashed,
+    password: passwordHashed,
     userImg: userPicture.path,
     date: new Date()
   }
@@ -192,21 +223,30 @@ app.post('/sign-up',upload.single('image'), async function(req, res){
 })
 app.post('/sign-in',upload.single('image'),async function(req, res){
 
-//   const userData = req.body;
-//   const userPicture = req.file;
-//   const enteredEmail = userData.email;
-//   const enteredEmail = userData.email;
+  const userData = req.body;
+  const enteredEmail = userData.email;
+  const enteredPassword = userData.password;
   
 
-//   const user = {
-//     email: enteredEmail,
-//   }
+  const database = await db.receiveBd().collection('users').findOne({email: enteredEmail});
+  if(!database){
+    console.log('Email not found, please Sign-up');
+    return res.redirect('/sign-in')
+  }
 
-// const result = await db.receiveBd().collection('characters').insertOne({
-//   img: req.file.path, name: req.body.name, author: req.body.author, desc: req.body.description, nature: req.body.nature, date: new Date()
-// });
+  console.log(database);
 
-  console.log(userData);
+  const passwordCheck = await bcrypt.compare(enteredPassword, database.enteredpassword);
+
+  if(!passwordCheck){
+    console.log('Incorrect password !');
+
+    return res.redirect('/sign-in')
+
+  }
+
+
+
  res.redirect('/');
 })
 
